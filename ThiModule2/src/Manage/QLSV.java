@@ -13,15 +13,22 @@ public class QLSV {
     public SapXepView sapXepView = new SapXepView();
     Scanner scanner = new Scanner(System.in);
     ReadAndWrite<SinhVien> readAndWrite = new ReadAndWrite<>();
-    public ArrayList<SinhVien> sinhViens;
+    public ArrayList<SinhVien> sinhViens = new ArrayList<>();
     public QLSV() {
-        sinhViens = readAndWrite.read("D:\\IntelliJ IDEA Community Edition 2022.2.1\\projects\\ThiModule2\\src\\File\\sinhviens.csv");
+        sinhViens = readAndWrite.read();
     }
 
 //    {
 //        sinhViens.add(new SinhVien("SV001","Nguyễn Bảo Sơn",23,"nam","Hà Nội",7.5));
-//        readAndWrite.write(sinhViens,"D:\\IntelliJ IDEA Community Edition 2022.2.1\\projects\\ThiModule2\\src\\File\\sinhviens.csv");
+//        readAndWrite.write(sinhViens);
 //    }
+    public void docFile() {
+        readAndWrite.read();
+    }
+
+    public void ghiFile() {
+        readAndWrite.write(sinhViens);
+    }
     public void hienthi() {
         for (SinhVien x : sinhViens) {
             System.out.println(x.toString());
@@ -48,11 +55,11 @@ public class QLSV {
         System.out.print("Nhập tuổi sinh viên: ");
         int tuoi = Validate.validateNumb(Validate.REGEX_NUMB);
         System.out.print("Nhập giới tính: ");
-        String gT = Validate.validateString(Validate.REGEX_GT);
+        String gT = scanner.nextLine();
         System.out.print("Nhập địa chỉ: ");
-        String diaChi = Validate.validateString(Validate.REGEX_DIACHI);
+        String diaChi = scanner.nextLine();
         System.out.print("Nhập điểm trung bình: ");
-        double dTB = Validate.validateDouble(Validate.REGEX_NUMB);
+        double dTB = Double.parseDouble(scanner.nextLine());
         return new SinhVien(mSV,hoTen,tuoi,gT,diaChi,dTB);
     }
 
@@ -129,11 +136,5 @@ public class QLSV {
         }
     }
 
-    public void docFile() {
-        readAndWrite.read("D:\\IntelliJ IDEA Community Edition 2022.2.1\\projects\\ThiModule2\\src\\File\\sinhviens.csv");
-    }
 
-    public void ghiFile() {
-        readAndWrite.write(sinhViens,"D:\\IntelliJ IDEA Community Edition 2022.2.1\\projects\\ThiModule2\\src\\File\\sinhviens.csv");
-    }
 }
